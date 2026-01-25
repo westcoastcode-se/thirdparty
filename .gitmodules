@@ -7,3 +7,6 @@
 [submodule "libpng"]
 	path = libpng
 	url = https://github.com/pnggroup/libpng.git
+[submodule "miniaudio"]
+	path = miniaudio
+	url = https://github.com/mackron/miniaudio.git
