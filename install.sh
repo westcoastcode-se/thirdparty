@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 debug=false
 while getopts d: flag
