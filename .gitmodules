@@ -10,3 +10,6 @@
 [submodule "miniaudio"]
 	path = miniaudio
 	url = https://github.com/mackron/miniaudio.git
+[submodule "freetype"]
+	path = freetype
+	url = https://github.com/freetype/freetype.git
