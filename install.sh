@@ -48,7 +48,7 @@ function zlib() {
 
 function libpng() {
     cd libpng
-    cmake -S . -B build -DPNG_SHARED=OFF -DPNG_STATIC=ON -DPNG_BUILD_ZLIB=OFF -DCMAKE_BUILD_TYPE=$build_type
+    cmake -S . -B build -DPNG_SHARED=OFF -DPNG_STATIC=ON -DCMAKE_BUILD_TYPE=$build_type
     cmake --build build --config $build_type
     sudo cmake --install build --prefix /usr/local
     cd ..
@@ -64,7 +64,7 @@ function wayland() {
 
 sudo pacman -Suy
 
-sdl
+sdl3
 glm
 miniaudio
 zlib
