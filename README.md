@@ -17,8 +17,11 @@ git clone --recursive ssh://git@192.168.50.173:3022/westcoastcode-se/thirdparty.
 
 ```bash
 ./install.sh
-=======
-## LibPNG
+```
+
+## Libraries
+
+### LibPNG
 
 ```cmake
 find_package(PNG 1.6 REQUIRED)
