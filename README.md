@@ -13,7 +13,13 @@ sudo pacman -S cmake gcc
 git clone --recursive ssh://git@192.168.50.173:3022/westcoastcode-se/thirdparty.git
 ```
 
-## Build and Install Libraries
+## Add Libraries as Vendor (recommended)
+
+```bash
+./vendor.sh ~/Repos/mygame
+```
+
+## Build and Install Libraries on System (not recommended)
 
 ```bash
 ./install.sh
@@ -21,11 +27,6 @@ git clone --recursive ssh://git@192.168.50.173:3022/westcoastcode-se/thirdparty.
 
 ## Libraries
 
+The following libraries is managed by this library
+
 ### LibPNG
-
-```cmake
-find_package(PNG 1.6 REQUIRED)
-target_link_libraries(your_target PRIVATE PNG::PNG)
-```
-
-## Update thirdparty library
