@@ -14,3 +14,6 @@ add_subdirectory(glfw)
 include(glad.cmake)
 include(glm.cmake)
 include(libpng.cmake)
+
+add_subdirectory(miniaudio)
+

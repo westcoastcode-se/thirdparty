@@ -21,3 +21,8 @@ cd $VENDOR_OUT_DIR/glm; git checkout 1.0.3; cd -;
 # Clone LibPNG
 git clone https://github.com/pnggroup/libpng.git $VENDOR_OUT_DIR/libpng
 cd $VENDOR_OUT_DIR/libpng; git checkout v1.6.58; cd -;
+
+# Clone miniaudio
+git clone https://github.com/mackron/miniaudio.git $VENDOR_OUT_DIR/miniaudio
+cd $VENDOR_OUT_DIR/miniaudio; git checkout 0.11.25; cd -;
+
