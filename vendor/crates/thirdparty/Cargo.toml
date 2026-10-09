@@ -1,0 +1,27 @@
+[package]
+name = "thirdparty"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "Vendored SDL, GLFW, glad, GLM, libpng, miniaudio, FreeType, and zlib for Rust."
+
+[features]
+default = ["sdl3", "glfw", "glad", "glm", "libpng", "miniaudio", "freetype", "zlib"]
+sdl3 = ["dep:sdl3-sys"]
+glfw = ["dep:glfw-sys"]
+glad = ["dep:glad-sys"]
+glm = ["dep:glm"]
+libpng = ["dep:libpng-sys"]
+miniaudio = ["dep:miniaudio-sys"]
+freetype = ["dep:freetype-sys"]
+zlib = ["dep:zlib-sys"]
+
+[dependencies]
+sdl3-sys = { path = "../sdl3-sys", optional = true }
+glfw-sys = { path = "../glfw-sys", optional = true }
+glad-sys = { path = "../glad-sys", optional = true }
+glm = { path = "../glm", optional = true }
+libpng-sys = { path = "../libpng-sys", optional = true }
+miniaudio-sys = { path = "../miniaudio-sys", optional = true }
+freetype-sys = { path = "../freetype-sys", optional = true }
+zlib-sys = { path = "../zlib-sys", optional = true }

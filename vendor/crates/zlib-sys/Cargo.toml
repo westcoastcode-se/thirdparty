@@ -1,0 +1,11 @@
+[package]
+name = "zlib-sys"
+version = "0.1.0"
+edition = "2021"
+publish = false
+links = "z"
+description = "FFI bindings for the vendored zlib 1.3.2."
+build = "build.rs"
+
+[build-dependencies]
+thirdparty-build = { path = "../thirdparty-build" }

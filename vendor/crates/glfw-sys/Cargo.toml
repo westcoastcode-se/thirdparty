@@ -1,0 +1,11 @@
+[package]
+name = "glfw-sys"
+version = "0.1.0"
+edition = "2021"
+publish = false
+links = "glfw3"
+description = "FFI bindings for the vendored GLFW 3.4."
+build = "build.rs"
+
+[build-dependencies]
+thirdparty-build = { path = "../thirdparty-build" }

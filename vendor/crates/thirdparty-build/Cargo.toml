@@ -1,0 +1,11 @@
+[package]
+name = "thirdparty-build"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "Builds the vendored C and C++ libraries and generates their Rust FFI."
+
+[dependencies]
+bindgen = "0.72"
+cc = "1"
+cmake = "0.1"

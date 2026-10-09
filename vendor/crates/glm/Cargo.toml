@@ -1,0 +1,12 @@
+[package]
+name = "glm"
+version = "0.1.0"
+edition = "2021"
+publish = false
+links = "glm"
+description = "Rust math types backed by the vendored GLM 1.0.3 headers."
+build = "build.rs"
+
+[build-dependencies]
+cc = "1"
+thirdparty-build = { path = "../thirdparty-build" }

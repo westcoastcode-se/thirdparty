@@ -1,0 +1,11 @@
+[package]
+name = "miniaudio-sys"
+version = "0.1.0"
+edition = "2021"
+publish = false
+links = "miniaudio"
+description = "FFI bindings for the vendored miniaudio 0.11.25."
+build = "build.rs"
+
+[build-dependencies]
+thirdparty-build = { path = "../thirdparty-build" }

@@ -1,0 +1,12 @@
+[package]
+name = "glad-sys"
+version = "0.1.0"
+edition = "2021"
+publish = false
+links = "glad"
+description = "FFI bindings for the vendored glad OpenGL 4.2 loader."
+build = "build.rs"
+
+[build-dependencies]
+cc = "1"
+thirdparty-build = { path = "../thirdparty-build" }

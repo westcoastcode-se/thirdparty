@@ -1,3 +1,11 @@
+#!/bin/sh
+set -e
+
+if [ -z "$1" ]; then
+  echo "usage: ./vendor.sh <project-dir>" >&2
+  exit 1
+fi
+
 # Output Directory
 OUT_DIR=$1
 VENDOR_OUT_DIR=$OUT_DIR/vendor
@@ -25,4 +33,12 @@ cd $VENDOR_OUT_DIR/libpng; git checkout v1.6.58; cd -;
 # Clone miniaudio
 git clone https://github.com/mackron/miniaudio.git $VENDOR_OUT_DIR/miniaudio
 cd $VENDOR_OUT_DIR/miniaudio; git checkout 0.11.25; cd -;
+
+# Clone zlib (libpng, FreeType, and the Rust crates)
+git clone https://github.com/madler/zlib.git $VENDOR_OUT_DIR/zlib
+cd $VENDOR_OUT_DIR/zlib; git checkout v1.3.2; cd -;
+
+# Clone FreeType
+git clone https://github.com/freetype/freetype.git $VENDOR_OUT_DIR/freetype
+cd $VENDOR_OUT_DIR/freetype; git checkout VER-2-14-3; cd -;
 

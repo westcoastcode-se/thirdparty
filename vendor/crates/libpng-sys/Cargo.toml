@@ -1,0 +1,14 @@
+[package]
+name = "libpng-sys"
+version = "0.1.0"
+edition = "2021"
+publish = false
+links = "png16"
+description = "FFI bindings for the vendored libpng 1.6.58."
+build = "build.rs"
+
+[dependencies]
+zlib-sys = { path = "../zlib-sys" }
+
+[build-dependencies]
+thirdparty-build = { path = "../thirdparty-build" }
