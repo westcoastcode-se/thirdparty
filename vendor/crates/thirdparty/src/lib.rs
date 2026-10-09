@@ -13,6 +13,8 @@ pub use glfw_sys;
 pub use glm;
 #[cfg(feature = "libpng")]
 pub use libpng_sys;
+#[cfg(feature = "llvm")]
+pub use llvm_sys;
 #[cfg(feature = "miniaudio")]
 pub use miniaudio_sys;
 #[cfg(feature = "sdl3")]
@@ -28,12 +30,14 @@ pub use zlib_sys;
     feature = "libpng",
     feature = "miniaudio",
     feature = "freetype",
-    feature = "zlib"
+    feature = "zlib",
+    feature = "llvm"
 ))]
 #[cfg(test)]
 mod tests {
     use crate::{
-        freetype_sys, glad_sys, glfw_sys, glm, libpng_sys, miniaudio_sys, sdl3_sys, zlib_sys,
+        freetype_sys, glad_sys, glfw_sys, glm, libpng_sys, llvm_sys, miniaudio_sys, sdl3_sys,
+        zlib_sys,
     };
 
     #[test]
@@ -62,6 +66,12 @@ mod tests {
             let mut library = std::ptr::null_mut();
             assert_eq!(freetype_sys::FT_Init_FreeType(&mut library), 0);
             freetype_sys::FT_Done_FreeType(library);
+
+            let mut llvm_major = 0u32;
+            let mut llvm_minor = 0u32;
+            let mut llvm_patch = 0u32;
+            llvm_sys::LLVMGetVersion(&mut llvm_major, &mut llvm_minor, &mut llvm_patch);
+            assert_eq!((llvm_major, llvm_minor, llvm_patch), (23, 1, 3));
         }
 
         let normal = glm::Vec3::new(0.0, 3.0, 0.0).normalize();

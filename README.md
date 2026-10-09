@@ -6,7 +6,7 @@ C++ builds need CMake, a C++ compiler, and the system packages used by SDL and G
 
 ```bash
 sudo pacman -Syu
-sudo pacman -S cmake ninja gcc pkgconf clang rust wayland wayland-protocols libxkbcommon
+sudo pacman -S cmake ninja gcc pkgconf clang python rust wayland wayland-protocols libxkbcommon
 ```
 
 ## Checkout this git repository
@@ -35,11 +35,16 @@ git clone --recursive ssh://git@192.168.50.173:3022/westcoastcode-se/thirdparty.
 add_subdirectory(vendor)
 target_link_libraries(your_target PRIVATE SDL3::SDL3-static PNG::PNG glad)
 target_include_directories(your_target PRIVATE ${GLAD_INCLUDE_DIR} ${GLM_INCLUDE_DIR} ${LIBPNG_INCLUDE_DIR})
+
+llvm_map_components_to_libnames(llvm_libs core)
+target_link_libraries(your_target PRIVATE ${llvm_libs})
 ```
+
+`vendor` builds the LLVM libraries for the host target. Clang, LLD, and the other projects in the `llvm-project` monorepo are not built. LLVM requires C++17 and sets `CMAKE_CXX_STANDARD` to 17 when that cache variable is unset.
 
 ## Use the libraries from Rust
 
-The same `vendor/` directory is a Cargo workspace. Depend on one library, or on the `thirdparty` crate for all of them. The build scripts compile the vendored sources, so the Rust program does not use a system copy of SDL, GLFW, glad, GLM, libpng, miniaudio, FreeType, or zlib.
+The same `vendor/` directory is a Cargo workspace. Depend on one library, or on the `thirdparty` crate for all of them. The build scripts compile the vendored sources, so the Rust program does not use a system copy of SDL, GLFW, glad, GLM, libpng, miniaudio, FreeType, zlib, or LLVM.
 
 ```toml
 [dependencies]
@@ -54,6 +59,7 @@ thirdparty = { path = "vendor/crates/thirdparty" }
 # miniaudio-sys = { path = "vendor/crates/miniaudio-sys" }
 # freetype-sys = { path = "vendor/crates/freetype-sys" }
 # zlib-sys = { path = "vendor/crates/zlib-sys" }
+# llvm-sys = { path = "vendor/crates/llvm-sys" }
 ```
 
 ```rust
@@ -61,7 +67,9 @@ let version = unsafe { thirdparty::sdl3_sys::SDL_GetVersion() };
 let forward = thirdparty::glm::Vec3::new(0.0, 0.0, -1.0).normalize();
 ```
 
-`thirdparty` features select libraries: `sdl3`, `glfw`, `glad`, `glm`, `libpng`, `miniaudio`, `freetype`, and `zlib`. The default turns them all on.
+`thirdparty` features select libraries: `sdl3`, `glfw`, `glad`, `glm`, `libpng`, `miniaudio`, `freetype`, `zlib`, and `llvm`. The default turns them all on.
+
+The Rust LLVM build compiles the static libraries in Release for the host target. It links the C API in `llvm-c`. Zlib, zstd, libxml2, and the other optional LLVM dependencies are off.
 
 GLM is header-only C++. The `glm` crate calls those headers for `Vec2`, `Vec3`, `Vec4`, `Mat4`, and `Quat`. `glm::include_dir()` and the `DEP_GLM_INCLUDE` variable are the header root for other C++ compiled in the same Cargo build.
 
@@ -87,3 +95,4 @@ Inside this repository the library checkouts are git submodules, and GLFW is not
 | miniaudio | 0.11.25 | `add_subdirectory(miniaudio)` | `miniaudio-sys` |
 | FreeType | 2.14.3 | sources under `vendor/freetype` | `freetype-sys` |
 | zlib | 1.3.2 | sources under `vendor/zlib` | `zlib-sys` |
+| LLVM | 23.1.3 | `llvm_map_components_to_libnames` | `llvm-sys` |

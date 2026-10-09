@@ -165,6 +165,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "llvm-sys"
+version = "0.1.0"
+dependencies = [
+ "cmake",
+ "thirdparty-build",
+]
+
+[[package]]
 name = "log"
 version = "0.4.34"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -301,6 +309,7 @@ dependencies = [
  "glfw-sys",
  "glm",
  "libpng-sys",
+ "llvm-sys",
  "miniaudio-sys",
  "sdl3-sys",
  "zlib-sys",

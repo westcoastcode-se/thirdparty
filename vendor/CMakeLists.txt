@@ -17,3 +17,5 @@ include(libpng.cmake)
 
 add_subdirectory(miniaudio)
 
+include(llvm.cmake)
+

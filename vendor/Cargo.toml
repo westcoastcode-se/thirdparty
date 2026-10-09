@@ -5,6 +5,7 @@ members = [
     "crates/zlib-sys",
     "crates/libpng-sys",
     "crates/freetype-sys",
+    "crates/llvm-sys",
     "crates/sdl3-sys",
     "crates/glfw-sys",
     "crates/glad-sys",

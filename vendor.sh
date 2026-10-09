@@ -42,3 +42,7 @@ cd $VENDOR_OUT_DIR/zlib; git checkout v1.3.2; cd -;
 git clone https://github.com/freetype/freetype.git $VENDOR_OUT_DIR/freetype
 cd $VENDOR_OUT_DIR/freetype; git checkout VER-2-14-3; cd -;
 
+# Clone LLVM (libraries; the CMake build does not enable the other monorepo projects)
+git clone https://github.com/llvm/llvm-project.git $VENDOR_OUT_DIR/llvm-project
+cd $VENDOR_OUT_DIR/llvm-project; git checkout llvmorg-23.1.3; cd -;
+
